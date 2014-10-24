@@ -1,6 +1,7 @@
 # Monitors traffic for Shellshock exploit attempts
 # When exploits are seen containing IP addresses and domain values, monitors traffic for 60 minutes watching for endpoints to connect to IP addresses and domains seen in exploit attempts
 # CrowdStrike 2014
+# josh.liburdi@crowdstrike.com
 
 @load base/frameworks/notice
 @load base/protocols/http
