@@ -117,17 +117,21 @@ if ( value in shellshock_hosts )
           $identifier=cat(c$id$orig_h,value)]);
 }
 
+# event to identify shellshock SMTP exploit attempts
 event mime_one_header(c: connection, h: mime_header_rec)
 {
 if ( ! c?$smtp || ! h?$value ) return;
 if (  shellshock_pattern !in h$value ) return;
 
+# generate a notice of the SMTP exploit attempt
 NOTICE([$note=Shellshock_SMTP,
         $conn=c,
         $msg=fmt("Host %s may have attempted a shellshock SMTP exploit against %s", c$id$orig_h, c$id$resp_h),
         $sub=fmt("Command: %s",h$value),
         $identifier=cat(c$id$orig_h,c$id$resp_h,h$value)]);
 
+# check the exploit attempt for IP addresses
+# if an IP address is found, then do not look for domains
 if ( find_ip(h$value) == T ) return;
 
 # check the exploit attempt for domains
