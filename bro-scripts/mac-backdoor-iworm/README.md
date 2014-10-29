@@ -19,9 +19,11 @@ git clone --recursive https://github.com/CrowdStrike/NetworkDetection.git
 
 Author
 ---
+```
 Josh Liburdi
 @jshlbrd
 josh.liburdi@crowdstrike.com
+```
 
 References
 ---
