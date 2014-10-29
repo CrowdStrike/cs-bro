@@ -6,6 +6,7 @@
 @load base/frameworks/notice
 @load base/protocols/http
 @load base/protocols/dhcp
+@load base/protocols/smtp
 
 module CrowdStrike;
 
@@ -13,11 +14,12 @@ export {
   redef enum Notice::Type += {
     Shellshock_DHCP,
     Shellshock_HTTP,
+    Shellshock_SMTP,
     Shellshock_Successful_Conn
   };
 }
 
-const shellshock_pattern = /(\(|%28)(\)|%29)( |%20)(\{|%7B)/ &redef;
+const shellshock_pattern = /((\(|%28)(\)|%29)( |%20)(\{|%7B)|(\{|%7B)(\:|%3A)(\;|%3B))/ &redef;
 
 const shellshock_commands = /wget/ | /curl/;
 
@@ -113,6 +115,24 @@ if ( value in shellshock_hosts )
           $msg=fmt("Host %s connected to a domain seen in a shellshock exploit", c$id$orig_h),
           $sub=fmt("Domain: %s",value),
           $identifier=cat(c$id$orig_h,value)]);
+}
+
+event mime_one_header(c: connection, h: mime_header_rec)
+{
+if ( ! c?$smtp || ! h?$value ) return;
+if (  shellshock_pattern !in h$value ) return;
+
+NOTICE([$note=Shellshock_SMTP,
+        $conn=c,
+        $msg=fmt("Host %s may have attempted a shellshock SMTP exploit against %s", c$id$orig_h, c$id$resp_h),
+        $sub=fmt("Command: %s",h$value),
+        $identifier=cat(c$id$orig_h,c$id$resp_h,h$value)]);
+
+if ( find_ip(h$value) == T ) return;
+
+# check the exploit attempt for domains
+if ( shellshock_commands in h$value )
+  find_domain(h$value);
 }
 
 # event to identify endpoints connecting to IP addresses seen in shellshock exploit attempts
