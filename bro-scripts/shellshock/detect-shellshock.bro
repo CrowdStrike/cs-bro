@@ -23,8 +23,8 @@ const shellshock_pattern = /((\(|%28)(\)|%29)( |%20)(\{|%7B)|(\{|%7B)(\:|%3A)(\;
 
 const shellshock_commands = /wget/ | /curl/;
 
-global shellshock_servers: set[addr] &create_expire=60min &synchronized;
-global shellshock_hosts: set[string] &create_expire=60min &synchronized;
+global shellshock_servers: set[addr] &create_expire=60min;
+global shellshock_hosts: set[string] &create_expire=60min;
 
 # function to locate and extract domains seen in shellshock exploit attempts
 function find_domain(ss: string)
