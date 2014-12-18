@@ -1,3 +1,7 @@
+# Intel framework support for SSL certificate subjects
+# CrowdStrike 2014
+# josh.liburdi@crowdstrike.com
+
 @load base/protocols/ssl
 @load base/frameworks/intel
 @load policy/frameworks/intel/seen/where-locations
