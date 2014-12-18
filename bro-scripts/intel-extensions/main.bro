@@ -9,15 +9,15 @@ module Intel;
 
 export {
   redef enum Intel::Type += {
-  	CERT_SUBJECT,
+    CERT_SUBJECT,
     EMAIL_SUBJECT
   };
 
   redef enum Intel::Where += {
-  	RADIUS::IN_USER_NAME,
+    RADIUS::IN_USER_NAME,
     FTP::IN_USER_NAME,
     SMTP::IN_SUBJECT,
-  	SSL::IN_SERVER_CERT,
-  	SSL::IN_CLIENT_CERT
+    SSL::IN_SERVER_CERT,
+    SSL::IN_CLIENT_CERT
   };
 }
