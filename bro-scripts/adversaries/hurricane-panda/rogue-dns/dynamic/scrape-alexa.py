@@ -1,6 +1,6 @@
 # Rudimentary script to collect domains in the Alexa top 500
 # This script can be run as often as needed to refresh the list of domains
-# CrowdStrike 2014
+# CrowdStrike 2015
 # josh.liburdi@crowdstrike.com
 
 import requests
