@@ -1,6 +1,6 @@
 # Detects a Hurricane Panda tactic of using Hurricane Electric to resolve commonly accessed websites
 # Alerts when a domain in the Alexa top 500 is resolved via Hurricane Electric and/or when a host connects to an IP in the DNS response
-# CrowdStrike 2014
+# CrowdStrike 2015
 # josh.liburdi@crowdstrike.com
 
 @load base/protocols/dns
