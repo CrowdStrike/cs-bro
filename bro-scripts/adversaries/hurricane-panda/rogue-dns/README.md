@@ -1,7 +1,7 @@
 Rogue DNS detector
 ================
 
-These scripts provide detection for a rogue DNS tactic utilized by Hurricane Panda. 
+These scripts provide detection for a rogue DNS tactic utilized by Hurricane Panda. You can read more about this tactic on the CrowdStrike blog: http://blog.crowdstrike.com/storm-chasing/
 
 Detection of this tactic relies heavily on having a list of common, known-good domains. To fill this need, these scripts use  the top 500 global domains as reported by Alexa (alexa.com/topsites). One script (static/detect-rogue-dns.bro) includes a static list of domains gathered from Alexa and can be deployed with no other dependencies. The other script (dynamic/detect-rogue-dns.bro) depends on a Python script (dynamic/scrape-alexa.py) that automates the collection of Alexa domains; this Python script should be scheduled to run regularly (daily, weekly, etc) so that the list of domains is kept up-to-date and the output file (alexa_domains.txt) should be pushed to network sensors along with the Bro script. Aside from the operation of collecting domains, both scripts are identical and contain the same detection capabilities.
 
@@ -42,3 +42,4 @@ josh.liburdi@crowdstrike.com
 
 References
 ---
+http://blog.crowdstrike.com/storm-chasing/
