@@ -9,11 +9,11 @@ export {
 
   type Info: record {
     ## Timestamp for when the event happened.
-    ts:			time    &log;
+    ts:				time    &log;
     ## Unique ID for the connection.
     uid:			string  &log;
     ## The connection's 4-tuple of endpoint addresses/ports.
-    id:			conn_id &log;
+    id:				conn_id &log;
     ## Request search target. 
     ## This value is derived from search requests.
     request_search_target:	string	&log &optional;
@@ -30,9 +30,9 @@ export {
     ## URL for UPnP description of device.
     location:			string	&log &optional;
     ## Vector of all request header fields.
-    request_headers:	vector of string &log &optional;
+    request_headers:		vector of string &log &optional;
     ## Vector of all response header fields.
-    response_headers:	vector of string &log &optional;
+    response_headers:		vector of string &log &optional;
     ## Flag the connection if it contains a request.
     seen_request:		bool	&log &default=F;
     ## Flag the connection if it contains a response.
