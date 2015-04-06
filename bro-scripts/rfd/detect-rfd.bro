@@ -35,12 +35,12 @@ const rfd_content_type: set[string] = {
 const rfd_pattern =   /\"\|\|/ |
                       /\"\<\</ |
                       /\"\>\>/ |
-                      /\;\/[^?]*\.bat(\;|$)/ |
-                      /\;\/[^?]*\.cmd(\;|$)/ |
-                      /\;\/[:alnum:]*?[Ss][Ee][Tt][Uu][Pp][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
-                      /\;\/[:alnum:]*?[Ii][nn][Ss][Tt][Aa][Ll][Ll][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
-                      /\;\/[:alnum:]*?[Uu][Pp][Dd][Aa][Tt][Ee][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
-                      /\;\/[:alnum:]*?[Uu][Nn][In][Ss][Tt][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ &redef;
+                      /[^?]*\.bat(\;|$)/ |
+                      /[^?]*\.cmd(\;|$)/ |
+                      /[:alnum:]*?[Ss][Ee][Tt][Uu][Pp][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /[:alnum:]*?[Ii][nn][Ss][Tt][Aa][Ll][Ll][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /[:alnum:]*?[Uu][Pp][Dd][Aa][Tt][Ee][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /[:alnum:]*?[Uu][Nn][In][Ss][Tt][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ &redef;
 
 
 # Perform a pattern match for reflected file downloads.
