@@ -30,17 +30,17 @@ const rfd_content_type: set[string] = {
   "application/xml",
   "text/xml",
   "text/html"
-};
+} &redef;
 
-const rfd_pattern = 	/\"\|\|/ |
-                			/\"\<\</ |
-                			/\"\>\>/ |
-                			/\;\/([:alnum:]|[:punct])*\.bat\;/ |
-                			/\;\/([:alnum:]|[:punct])*\.cmd\;/ |
-                			/\;\/[:alnum:]*?[Ss][Ee][Tt][Uu][Pp][:alnum:]*?\.[:alpha:]{3,4}\;/ |
-                			/\;\/[:alnum:]*?[Ii][nn][Ss][Tt][Aa][Ll][Ll][:alnum:]*?\.[:alpha:]{3,4}\;/ |
-                			/\;\/[:alnum:]*?[Uu][Pp][Dd][Aa][Tt][Ee][:alnum:]*?\.[:alpha:]{3,4}\;/ |
-                			/\;\/[:alnum:]*?[Uu][Nn][In][Ss][Tt][:alnum:]*?\.[:alpha:]{3,4}\;/;
+const rfd_pattern =   /\"\|\|/ |
+                      /\"\<\</ |
+                      /\"\>\>/ |
+                      /\;\/[^?]*\.bat(\;|$)/ |
+                      /\;\/[^?]*\.cmd(\;|$)/ |
+                      /\;\/[:alnum:]*?[Ss][Ee][Tt][Uu][Pp][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /\;\/[:alnum:]*?[Ii][nn][Ss][Tt][Aa][Ll][Ll][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /\;\/[:alnum:]*?[Uu][Pp][Dd][Aa][Tt][Ee][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ |
+                      /\;\/[:alnum:]*?[Uu][Nn][In][Ss][Tt][:alnum:]*?\.[:alpha:]{3,4}(\;|$)/ &redef;
 
 
 # Perform a pattern match for reflected file downloads.
