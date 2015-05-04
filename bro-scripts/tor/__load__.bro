@@ -1,2 +1,2 @@
 @load ./main
-@load policy
+@load ./add-tor
