@@ -19,7 +19,7 @@ The list of Tor servers is collected from torstatus.blutmagie.de and sent to Bro
 
 Feature list
 ---
-* Identifies Tor servers in network traffic based on IP addresses 
+* Identifies Tor servers in network traffic based on publicly declared IP addresses 
 * Logs Tor server metadata to tor.log
 * Logs Tor connections to tor.log and conn.log
 * Adds Tor as a service to conn.log
@@ -50,4 +50,5 @@ josh.liburdi@crowdstrike.com
 
 References
 ---
+* https://en.wikipedia.org/wiki/Tor
 * https://torstatus.blutmagie.de
