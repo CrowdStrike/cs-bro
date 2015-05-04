@@ -94,6 +94,7 @@ type tor_table: record {
 };
 
 global torlist: table[addr] of tor_table = table();
+const torlist_location = "bro-tor.txt";
 
 # Create the Tor log stream and load the Tor list
 event bro_init()
