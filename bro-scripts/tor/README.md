@@ -11,7 +11,7 @@ Sample output of tor.log can be seen below:
 1430771639.088494	Cnh8OF7g4LFrw3i4e	10.2.33.76	8	71.222.54.4	0	71.222.54.4	11not11	71-222-54-4.ptld.qwest.net	Tor 0.2.5.12 on Linux	US	1	612000.000000	9001	9030	F	F	F	F	F	F
 ```
 
-Additionally, loading the script policy/add-tor.bro creates a new field in conn.log named found_tor-- this field contains a boolean value that describes if a Tor server was seen as either the originator or responder in the connection. This script is provided as an easy way for analysts to pivot to other activity seen over the connection.
+Additionally, loading the script add-tor.bro creates a new field in conn.log named found_tor-- this field contains a boolean value that describes if a Tor server was seen as either the originator or responder in the connection. This script is provided as an easy way for analysts to pivot to other activity seen over the connection.
 
 Overall, this method of identifying connections involving Tor servers is preferable to traditional IDS detection or treating each Tor node as "bad" and adding them to a watchlist / indicator list-- Tor use in and of itself is not malicious, but the Tor network can be used for malicious purposes; logging this activity and connecting it with other network logs and artifacts allows an analyst to make a determination of whether or not the activity is threatening to their network.
 
