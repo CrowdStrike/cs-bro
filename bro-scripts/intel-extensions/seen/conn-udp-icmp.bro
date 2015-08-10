@@ -6,25 +6,11 @@
 @load base/frameworks/intel
 @load policy/frameworks/intel/seen/where-locations
 
-event Conn::log_conn(rec: Conn::Info)
+event connection_state_remove(c: connection)
 {
-if ( rec?$proto && ( rec$proto != tcp || ( rec?$history && rec$proto == tcp && "h" !in rec$history ) ) ) 
-  {
-  # duration, start_time, addl, and hot are required fields although they are not used by Intel framework
-  local dur: interval;
-  local history: string;
-
-  if ( rec?$duration )
-    dur = rec$duration;
-  else dur = 0secs;
-
-  if ( rec?$history )
-    history = rec$history;
-  else history = "";
-
-  local c = [$uid = rec$uid,$id = rec$id,$history = history,$duration = dur,$start_time = 0,$addl = "",$hot = 0];
-
-  Intel::seen([$host=c$id$orig_h, $conn=c, $where=Conn::IN_ORIG]);
-  Intel::seen([$host=c$id$resp_h, $conn=c, $where=Conn::IN_RESP]);
-  }
+if ( c$conn?$proto && ( c$conn$proto != tcp || ( c$conn?$history && c$conn$proto == tcp && "h" !in c$conn$history ) ) )
+        {
+        Intel::seen([$host=c$id$orig_h, $conn=c, $where=Conn::IN_ORIG]);
+        Intel::seen([$host=c$id$resp_h, $conn=c, $where=Conn::IN_RESP]);
+        }
 }
