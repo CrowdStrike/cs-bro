@@ -176,8 +176,11 @@ if ( torlist[tor_ip]?$bad_exit_flag )
 # Generate reporter message when the Tor list is updated
 event Input::end_of_data(name: string, source: string) 
 {
-local msg = fmt("Tor list updated at %s",network_time());
-Log::write(Reporter::LOG, [$ts=network_time(), $level=Reporter::INFO, $message=msg]);
+if ( strcmp(name, "torlist") == 0 )
+	{
+	local msg = fmt("Tor list updated at %s",network_time());
+	Log::write(Reporter::LOG, [$ts=network_time(), $level=Reporter::INFO, $message=msg]);
+	}
 }
 
 # Check each new connection for an IP address in the Tor list
