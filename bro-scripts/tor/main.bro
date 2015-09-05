@@ -10,52 +10,52 @@ export {
 	redef enum Log::ID += { TOR::LOG };
 
 	type Info: record {
-	## Timestamp for when the event happened.
-	ts:               time 	&log;
-	## Unique ID for the connection.
-	uid:              string &log;
-	## The connection's 4-tuple of endpoint addresses/ports.
-	id:               conn_id &log;
-	## Tor node IP address.
-	tor_ip:           addr &log &optional;
-	## Tor node router name.
-	router_name:      string &log &optional;
-	## Tor node host name.
-	host_name:        string &log &optional;
-	## Tor node platform / version number.
-	platform:         string &log &optional;
-	## Tor node country code location.
-	country_code:     string &log &optional;
-	## Tor node bandwidth (in KB/s).
-	bandwidth:        count	&log &optional;
-	## Tor node estimated uptime.
-	uptime:           time	&log &optional;
-	## Tor node router port.
-	router_port:      count	&log &optional;
-	## Tor node directory port.
-	directory_port:   count	&log &optional;
-	## Tor node auth flag.
-	auth_flag:        bool	&log &optional;
-	## Tor node exit flag.
-	exit_flag:        bool	&log &optional;
-	## Tor node fast flag.
-	fast_flag:        bool	&log &optional;
-	## Tor node guard flag.
-	guard_flag:       bool	&log &optional;
-	## Tor node named flag.
-	named_flag:       bool	&log &optional;
-	## Tor node stable flag.
-	stable_flag:      bool	&log &optional;
-	## Tor node running flag.
-	running_flag:     bool	&log &optional;
-	## Tor node valid flag.
-	valid_flag:       bool	&log &optional;
-	## Tor node v2dir flag.
-	v2dir_flag:       bool	&log &optional;
-	## Tor node hibernating flag.
-	hibernating_flag: bool	&log &optional;
-	## Tor node bad exit flag.
-	bad_exit_flag:    bool	&log &optional;
+		## Timestamp for when the event happened.
+		ts:               time 	  &log;
+		## Unique ID for the connection.
+		uid:              string  &log;
+		## The connection's 4-tuple of endpoint addresses/ports.
+		id:               conn_id &log;
+		## Tor node IP address.
+		tor_ip:           addr    &log &optional;
+		## Tor node router name.
+		router_name:      string  &log &optional;
+		## Tor node host name.
+		host_name:        string  &log &optional;
+		## Tor node platform / version number.
+		platform:         string  &log &optional;
+		## Tor node country code location.
+		country_code:     string  &log &optional;
+		## Tor node bandwidth (in KB/s).
+		bandwidth:        count	  &log &optional;
+		## Tor node estimated uptime.
+		uptime:           time	  &log &optional;
+		## Tor node router port.
+		router_port:      count	  &log &optional;
+		## Tor node directory port.
+		directory_port:   count	  &log &optional;
+		## Tor node auth flag.
+		auth_flag:        bool	  &log &optional;
+		## Tor node exit flag.
+		exit_flag:        bool	  &log &optional;
+		## Tor node fast flag.
+		fast_flag:        bool	  &log &optional;
+		## Tor node guard flag.
+		guard_flag:       bool	  &log &optional;
+		## Tor node named flag.
+		named_flag:       bool	  &log &optional;
+		## Tor node stable flag.
+		stable_flag:      bool	  &log &optional;
+		## Tor node running flag.
+		running_flag:     bool	  &log &optional;
+		## Tor node valid flag.
+		valid_flag:       bool	  &log &optional;
+		## Tor node v2dir flag.
+		v2dir_flag:       bool	  &log &optional;
+		## Tor node hibernating flag.
+		hibernating_flag: bool	  &log &optional;
+		## Tor node bad exit flag.
+		bad_exit_flag:    bool	  &log &optional;
 	};
 
 	## Event that can be handled to access the Tor record as it is sent on
@@ -86,11 +86,11 @@ type tor_table: record {
 	named_flag:       count;
 	stable_flag:      count;
 	running_flag:     count;
-	valid_flag:       count;	
+	valid_flag:       count;
 	v2dir_flag:       count;
 	platform:         string;
 	hibernating_flag: count;
-	bad_exit_flag:    count;	
+	bad_exit_flag:    count;
 };
 
 global torlist: table[addr] of tor_table = table();
@@ -174,7 +174,7 @@ if ( torlist[tor_ip]?$bad_exit_flag )
 }
 
 # Generate reporter message when the Tor list is updated
-event Input::end_of_data(name: string, source: string) 
+event Input::end_of_data(name: string, source: string)
 {
 if ( strcmp(name, "torlist") == 0 )
 	{
@@ -186,7 +186,7 @@ if ( strcmp(name, "torlist") == 0 )
 # Check each new connection for an IP address in the Tor list
 event new_connection(c: connection )
 {
-if ( c$id$orig_h in torlist ) 
+if ( c$id$orig_h in torlist )
 	{
 	set_session(c);
 	set_data(c,c$id$orig_h);
@@ -198,7 +198,7 @@ else if ( c$id$resp_h in torlist )
 	}
 }
 
-# Generate the tor.log for each Tor connection 
+# Generate the tor.log for each Tor connection
 event connection_state_remove(c: connection)
 {
 if ( c?$tor )
