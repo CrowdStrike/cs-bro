@@ -15,6 +15,8 @@ redef record DNS::Info += {
 
 event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count)
 {
-c$dns$query_vec = HTTP::extract_keys(query,/\./);
-c$dns$query_vec_size = |c$dns$query_vec|;
+	if( c?$dns ) {
+		c$dns$query_vec = HTTP::extract_keys(query,/\./);
+		c$dns$query_vec_size = |c$dns$query_vec|;
+	}
 }
