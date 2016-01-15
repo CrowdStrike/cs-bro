@@ -1,5 +1,3 @@
-@load ./consts
-
 module DceRpc;
 
 export {
